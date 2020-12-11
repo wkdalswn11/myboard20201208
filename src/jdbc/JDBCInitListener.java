@@ -68,5 +68,5 @@ public class JDBCInitListener implements ServletContextListener {
          application.setAttribute("root", contextPath);
          
     }
-	
+	 
 }
