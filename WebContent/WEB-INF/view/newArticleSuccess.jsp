@@ -14,10 +14,11 @@
 <body>
 <div class="container">
 	<h1>게시글을 등록했습니다</h1>
+	
 	<br />
-	${ctxPath = pageContext.request.contextPath() }
-	<a href="${ctxPath }/article/list.do">[게시글 목록 보기]</a>
-	<a href="${ctxPath }/article/read.do?no=${newArticleNo}">[게시글 내용 보기]</a>
+	
+	<a href="${root }/article/list.do">[게시글 목록 보기]</a>
+	<a href="${root }/article/read.do?no=${newArticleNo}">[게시글 내용 보기]</a>
 </div>
 </body>
 </html>

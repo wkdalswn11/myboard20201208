@@ -91,8 +91,8 @@ public class ControllerUsingURI extends HttpServlet {
 	private void process(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String uri = request.getRequestURI();
-		String root = request.getContextPath();
+		String uri = request.getRequestURI(); 
+		String root = request.getContextPath();	
 
 		String command = "";
 

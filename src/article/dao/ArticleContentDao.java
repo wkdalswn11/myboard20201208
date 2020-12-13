@@ -15,6 +15,7 @@ public class ArticleContentDao {
 			pstmt = conn.prepareStatement(
 					"INSERT INTO article_content "
 					+ "(article_no, content) VALUES (?,?) ");
+			
 			pstmt.setLong(1, content.getNumber());
 			pstmt.setString(2, content.getContent());
 			int InsertedCount = pstmt.executeUpdate();

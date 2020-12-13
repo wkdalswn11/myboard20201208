@@ -39,6 +39,7 @@ public class WriteArticleHandler implements CommandHandler{
 		req.setAttribute("errors", errors);
 		
 		User user = (User) req.getSession(false).getAttribute("authUser");
+		
 		WriteRequest writeReq = createWriteRequest(user, req);
 		writeReq.validate(errors);
 		

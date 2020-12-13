@@ -30,6 +30,7 @@
 		<a href="logout.do">[로그아웃 하기]</a>
 		<a href="changePwd.do">[암호 변경하기]</a>
 		<a href="removeMember.do">[회원 탈퇴]</a>
+		<a href="article/write.do">[게시글 쓰기]</a>
 	</u:isLogin>
 	<u:notLogin>
 		<a href="join.do">[회원가입하기]</a>

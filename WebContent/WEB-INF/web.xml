@@ -52,5 +52,6 @@
   	<url-pattern>/changePwd.do</url-pattern>
   	<url-pattern>/removeMember.do</url-pattern>
   	<url-pattern>/article/write.do</url-pattern>
+  	<url-pattern>/article/list.do</url-pattern>
   </filter-mapping>
 </web-app>

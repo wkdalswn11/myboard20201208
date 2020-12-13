@@ -13,6 +13,7 @@
 </head>
 <body>
 <div class="container">
+<form action="write.do" method="post">
 	<p>
 		제목: <br /> 
 		<input type="text"  name="title" value="${param.title }">
@@ -23,6 +24,7 @@
 		<textarea name="content" id="" cols="30" rows="5">${param.content }</textarea>
 	</p>
 	<input type="submit" value="새 글 등록" />
+</form>
 </div>
 </body>
 </html>
