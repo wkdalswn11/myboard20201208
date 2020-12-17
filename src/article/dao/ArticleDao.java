@@ -16,6 +16,26 @@ import jdbc.JdbcUtil;
 
 public class ArticleDao {
 	
+	public Article selectById(Connection conn, int no) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try { 
+			String sql = "SELECT * FROM article WHERE article_no = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			Article article = null;
+			if (rs.next()) {
+				article = convertArticle(rs);
+			}
+			return article;
+		} finally {
+			JdbcUtil.close(rs, pstmt);
+		}
+		
+		
+	}
+	
 	public Article insert(Connection conn, Article article) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -119,5 +139,54 @@ public class ArticleDao {
 				rs.getTimestamp("moddate"),
 				rs.getInt("read_cnt"));
 	}
+
+	public void increaseReadCount(Connection conn, int no) throws SQLException {
+		String sql = "UPDATE article "
+				+ "SET read_cnt = read_cnt + 1 "
+				+ "WHERE article_no = ? ";
+		
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setInt(1, no);
+			pstmt.executeUpdate();
+		}
+	}
+	
+	public int update(Connection con, int no, String title) throws SQLException {
+		String sql = "UPDATE article "
+				+ "SET title = ?, moddate = SYSDATE "
+				+ "WHERE article_no = ?";
+		
+		try(PreparedStatement pstmt = con.prepareStatement(sql)) {
+			pstmt.setString(1, title);
+			pstmt.setInt(2, no);
+			
+			int cnt = pstmt.executeUpdate();
+			return  cnt;
+		}
+	}
+	
+	public int remove(Connection con, int no) throws SQLException {
+		String sql = "DELETE FROM article "
+				+ "WHERE article_no = ? ";
+		
+		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+			pstmt.setInt(1, no);
+			
+			int cnt = pstmt.executeUpdate();
+			return cnt;
+		}
+	}
+
+	public void delete(Connection con, int no) throws SQLException { // 위에 remove와같음 선생님코드.
+		String sql = "DELETE article WHERE article_no=? ";
+		
+		try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+			pstmt.setInt(1, no);
+			
+			pstmt.executeUpdate();
+		}
+	}
+
+	
 	
 }

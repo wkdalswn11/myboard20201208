@@ -62,4 +62,39 @@ FROM article
 ORDER BY article_no 
 OFFSET 0 ROWS FETCH NEXT 5 ROWS ONLY;
 
+-- 댓글
+-- 11g
+CREATE SEQUENCE reply_seq;
+CREATE TABLE reply (
+    replyid NUMBER,
+    memberid VARCHAR2(50) NOT NULL,
+    article_no NUMBER NOT NULL,
+    body VARCHAR2(1000) NOT NULL,
+    regdate DATE NOT NULL,
+    PRIMARY KEY(replyid)
+);
+INSERT INTO reply (replyid, memberid, article_no, body, regdate)
+VALUES (reply_seq.nextval, ' ', 0, ' ', SYSDATE);
+
+-- 12 c
+DROP TABLE reply;
+CREATE TABLE reply (
+    replyid NUMBER GENERATED AS IDENTITY,
+    memberid VARCHAR2(50) NOT NULL,
+    article_no NUMBER NOT NULL,
+    body VARCHAR2(1000) NOT NULL,
+    regdate DATE NOT NULL,
+    PRIMARY KEY(replyid)
+);
+INSERT INTO reply (memberid, article_no, body, regdate)
+VALUES (' ', 0, ' ', SYSDATE);
+
+DESC reply;
+
+
+
+
+
+
+
 
